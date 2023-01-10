@@ -1,0 +1,702 @@
+
+type AttendanceList @aws_iam @aws_api_key {
+  id: ID!
+  date: AWSDate
+  name: String
+  imageURL: AWSURL
+  profession: String
+  phoneNumber: String
+  arrivalTime: AWSTime
+  departureTime: AWSTime
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type NotificationListForUsers @aws_iam @aws_api_key {
+  id: ID!
+  message: String
+  imageURL: AWSURL
+  forUser: String
+  date: AWSDate
+  time: AWSTime
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type DomesticHelper @aws_iam @aws_api_key {
+  id: ID!
+  name: String
+  imageURL: AWSURL
+  age: String
+  gender: String
+  profession: String
+  phoneNumber: String
+  address: String
+  availability: String
+  hourlyRate: String
+  aadharNumber: String
+  skills: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Visitor @aws_iam @aws_api_key {
+  id: ID!
+  visitorName: String
+  visitorType: String
+  expectedDate: AWSDate
+  expectedTime: AWSTime
+  allowedBy: String
+  memberPhoneNumber: String
+  approvalStatus: String
+  verifyStatus: String
+  code: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type SocietyMember @aws_iam @aws_api_key {
+  id: ID!
+  name: String
+  emailId: AWSEmail
+  imageURL: AWSURL
+  age: String
+  role: String
+  gender: String
+  phoneNumber: String
+  address: String
+  block: String
+  familyMember: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelAttendanceListConnection @aws_api_key @aws_iam {
+  items: [AttendanceList]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelAttendanceListFilterInput {
+  id: ModelIDInput
+  date: ModelStringInput
+  name: ModelStringInput
+  imageURL: ModelStringInput
+  profession: ModelStringInput
+  phoneNumber: ModelStringInput
+  arrivalTime: ModelStringInput
+  departureTime: ModelStringInput
+  and: [ModelAttendanceListFilterInput]
+  or: [ModelAttendanceListFilterInput]
+  not: ModelAttendanceListFilterInput
+}
+
+type Query {
+  getAttendanceList(id: ID!): AttendanceList @aws_api_key @aws_iam
+  listAttendanceLists(filter: ModelAttendanceListFilterInput, limit: Int, nextToken: String): ModelAttendanceListConnection @aws_api_key @aws_iam
+  syncAttendanceLists(filter: ModelAttendanceListFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAttendanceListConnection @aws_api_key @aws_iam
+  getNotificationListForUsers(id: ID!): NotificationListForUsers @aws_api_key @aws_iam
+  listNotificationListForUsers(filter: ModelNotificationListForUsersFilterInput, limit: Int, nextToken: String): ModelNotificationListForUsersConnection @aws_api_key @aws_iam
+  syncNotificationListForUsers(filter: ModelNotificationListForUsersFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelNotificationListForUsersConnection @aws_api_key @aws_iam
+  getDomesticHelper(id: ID!): DomesticHelper @aws_api_key @aws_iam
+  listDomesticHelpers(filter: ModelDomesticHelperFilterInput, limit: Int, nextToken: String): ModelDomesticHelperConnection @aws_api_key @aws_iam
+  syncDomesticHelpers(filter: ModelDomesticHelperFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelDomesticHelperConnection @aws_api_key @aws_iam
+  getVisitor(id: ID!): Visitor @aws_api_key @aws_iam
+  listVisitors(filter: ModelVisitorFilterInput, limit: Int, nextToken: String): ModelVisitorConnection @aws_api_key @aws_iam
+  syncVisitors(filter: ModelVisitorFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelVisitorConnection @aws_api_key @aws_iam
+  getSocietyMember(id: ID!): SocietyMember @aws_api_key @aws_iam
+  listSocietyMembers(filter: ModelSocietyMemberFilterInput, limit: Int, nextToken: String): ModelSocietyMemberConnection @aws_api_key @aws_iam
+  syncSocietyMembers(filter: ModelSocietyMemberFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelSocietyMemberConnection @aws_api_key @aws_iam
+}
+
+input ModelAttendanceListConditionInput {
+  date: ModelStringInput
+  name: ModelStringInput
+  imageURL: ModelStringInput
+  profession: ModelStringInput
+  phoneNumber: ModelStringInput
+  arrivalTime: ModelStringInput
+  departureTime: ModelStringInput
+  and: [ModelAttendanceListConditionInput]
+  or: [ModelAttendanceListConditionInput]
+  not: ModelAttendanceListConditionInput
+}
+
+input CreateAttendanceListInput {
+  id: ID
+  date: AWSDate
+  name: String
+  imageURL: AWSURL
+  profession: String
+  phoneNumber: String
+  arrivalTime: AWSTime
+  departureTime: AWSTime
+  _version: Int
+}
+
+input UpdateAttendanceListInput {
+  id: ID!
+  date: AWSDate
+  name: String
+  imageURL: AWSURL
+  profession: String
+  phoneNumber: String
+  arrivalTime: AWSTime
+  departureTime: AWSTime
+  _version: Int
+}
+
+input DeleteAttendanceListInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createAttendanceList(input: CreateAttendanceListInput!, condition: ModelAttendanceListConditionInput): AttendanceList @aws_api_key @aws_iam
+  updateAttendanceList(input: UpdateAttendanceListInput!, condition: ModelAttendanceListConditionInput): AttendanceList @aws_api_key @aws_iam
+  deleteAttendanceList(input: DeleteAttendanceListInput!, condition: ModelAttendanceListConditionInput): AttendanceList @aws_api_key @aws_iam
+  createNotificationListForUsers(input: CreateNotificationListForUsersInput!, condition: ModelNotificationListForUsersConditionInput): NotificationListForUsers @aws_api_key @aws_iam
+  updateNotificationListForUsers(input: UpdateNotificationListForUsersInput!, condition: ModelNotificationListForUsersConditionInput): NotificationListForUsers @aws_api_key @aws_iam
+  deleteNotificationListForUsers(input: DeleteNotificationListForUsersInput!, condition: ModelNotificationListForUsersConditionInput): NotificationListForUsers @aws_api_key @aws_iam
+  createDomesticHelper(input: CreateDomesticHelperInput!, condition: ModelDomesticHelperConditionInput): DomesticHelper @aws_api_key @aws_iam
+  updateDomesticHelper(input: UpdateDomesticHelperInput!, condition: ModelDomesticHelperConditionInput): DomesticHelper @aws_api_key @aws_iam
+  deleteDomesticHelper(input: DeleteDomesticHelperInput!, condition: ModelDomesticHelperConditionInput): DomesticHelper @aws_api_key @aws_iam
+  createVisitor(input: CreateVisitorInput!, condition: ModelVisitorConditionInput): Visitor @aws_api_key @aws_iam
+  updateVisitor(input: UpdateVisitorInput!, condition: ModelVisitorConditionInput): Visitor @aws_api_key @aws_iam
+  deleteVisitor(input: DeleteVisitorInput!, condition: ModelVisitorConditionInput): Visitor @aws_api_key @aws_iam
+  createSocietyMember(input: CreateSocietyMemberInput!, condition: ModelSocietyMemberConditionInput): SocietyMember @aws_api_key @aws_iam
+  updateSocietyMember(input: UpdateSocietyMemberInput!, condition: ModelSocietyMemberConditionInput): SocietyMember @aws_api_key @aws_iam
+  deleteSocietyMember(input: DeleteSocietyMemberInput!, condition: ModelSocietyMemberConditionInput): SocietyMember @aws_api_key @aws_iam
+}
+
+input ModelSubscriptionAttendanceListFilterInput {
+  id: ModelSubscriptionIDInput
+  date: ModelSubscriptionStringInput
+  name: ModelSubscriptionStringInput
+  imageURL: ModelSubscriptionStringInput
+  profession: ModelSubscriptionStringInput
+  phoneNumber: ModelSubscriptionStringInput
+  arrivalTime: ModelSubscriptionStringInput
+  departureTime: ModelSubscriptionStringInput
+  and: [ModelSubscriptionAttendanceListFilterInput]
+  or: [ModelSubscriptionAttendanceListFilterInput]
+}
+
+type Subscription {
+  onCreateAttendanceList: AttendanceList @aws_subscribe(mutations: ["createAttendanceList"]) @aws_api_key @aws_iam
+  onUpdateAttendanceList: AttendanceList @aws_subscribe(mutations: ["updateAttendanceList"]) @aws_api_key @aws_iam
+  onDeleteAttendanceList: AttendanceList @aws_subscribe(mutations: ["deleteAttendanceList"]) @aws_api_key @aws_iam
+  onCreateNotificationListForUsers: NotificationListForUsers @aws_subscribe(mutations: ["createNotificationListForUsers"]) @aws_api_key @aws_iam
+  onUpdateNotificationListForUsers: NotificationListForUsers @aws_subscribe(mutations: ["updateNotificationListForUsers"]) @aws_api_key @aws_iam
+  onDeleteNotificationListForUsers: NotificationListForUsers @aws_subscribe(mutations: ["deleteNotificationListForUsers"]) @aws_api_key @aws_iam
+  onCreateDomesticHelper: DomesticHelper @aws_subscribe(mutations: ["createDomesticHelper"]) @aws_api_key @aws_iam
+  onUpdateDomesticHelper: DomesticHelper @aws_subscribe(mutations: ["updateDomesticHelper"]) @aws_api_key @aws_iam
+  onDeleteDomesticHelper: DomesticHelper @aws_subscribe(mutations: ["deleteDomesticHelper"]) @aws_api_key @aws_iam
+  onCreateVisitor: Visitor @aws_subscribe(mutations: ["createVisitor"]) @aws_api_key @aws_iam
+  onUpdateVisitor: Visitor @aws_subscribe(mutations: ["updateVisitor"]) @aws_api_key @aws_iam
+  onDeleteVisitor: Visitor @aws_subscribe(mutations: ["deleteVisitor"]) @aws_api_key @aws_iam
+  onCreateSocietyMember: SocietyMember @aws_subscribe(mutations: ["createSocietyMember"]) @aws_api_key @aws_iam
+  onUpdateSocietyMember: SocietyMember @aws_subscribe(mutations: ["updateSocietyMember"]) @aws_api_key @aws_iam
+  onDeleteSocietyMember: SocietyMember @aws_subscribe(mutations: ["deleteSocietyMember"]) @aws_api_key @aws_iam
+}
+
+type ModelNotificationListForUsersConnection @aws_api_key @aws_iam {
+  items: [NotificationListForUsers]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelNotificationListForUsersFilterInput {
+  id: ModelIDInput
+  message: ModelStringInput
+  imageURL: ModelStringInput
+  forUser: ModelStringInput
+  date: ModelStringInput
+  time: ModelStringInput
+  and: [ModelNotificationListForUsersFilterInput]
+  or: [ModelNotificationListForUsersFilterInput]
+  not: ModelNotificationListForUsersFilterInput
+}
+
+input ModelNotificationListForUsersConditionInput {
+  message: ModelStringInput
+  imageURL: ModelStringInput
+  forUser: ModelStringInput
+  date: ModelStringInput
+  time: ModelStringInput
+  and: [ModelNotificationListForUsersConditionInput]
+  or: [ModelNotificationListForUsersConditionInput]
+  not: ModelNotificationListForUsersConditionInput
+}
+
+input CreateNotificationListForUsersInput {
+  id: ID
+  message: String
+  imageURL: AWSURL
+  forUser: String
+  date: AWSDate
+  time: AWSTime
+  _version: Int
+}
+
+input UpdateNotificationListForUsersInput {
+  id: ID!
+  message: String
+  imageURL: AWSURL
+  forUser: String
+  date: AWSDate
+  time: AWSTime
+  _version: Int
+}
+
+input DeleteNotificationListForUsersInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionNotificationListForUsersFilterInput {
+  id: ModelSubscriptionIDInput
+  message: ModelSubscriptionStringInput
+  imageURL: ModelSubscriptionStringInput
+  forUser: ModelSubscriptionStringInput
+  date: ModelSubscriptionStringInput
+  time: ModelSubscriptionStringInput
+  and: [ModelSubscriptionNotificationListForUsersFilterInput]
+  or: [ModelSubscriptionNotificationListForUsersFilterInput]
+}
+
+type ModelDomesticHelperConnection @aws_api_key @aws_iam {
+  items: [DomesticHelper]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelDomesticHelperFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  imageURL: ModelStringInput
+  age: ModelStringInput
+  gender: ModelStringInput
+  profession: ModelStringInput
+  phoneNumber: ModelStringInput
+  address: ModelStringInput
+  availability: ModelStringInput
+  hourlyRate: ModelStringInput
+  aadharNumber: ModelStringInput
+  skills: ModelStringInput
+  and: [ModelDomesticHelperFilterInput]
+  or: [ModelDomesticHelperFilterInput]
+  not: ModelDomesticHelperFilterInput
+}
+
+input ModelDomesticHelperConditionInput {
+  name: ModelStringInput
+  imageURL: ModelStringInput
+  age: ModelStringInput
+  gender: ModelStringInput
+  profession: ModelStringInput
+  phoneNumber: ModelStringInput
+  address: ModelStringInput
+  availability: ModelStringInput
+  hourlyRate: ModelStringInput
+  aadharNumber: ModelStringInput
+  skills: ModelStringInput
+  and: [ModelDomesticHelperConditionInput]
+  or: [ModelDomesticHelperConditionInput]
+  not: ModelDomesticHelperConditionInput
+}
+
+input CreateDomesticHelperInput {
+  id: ID
+  name: String
+  imageURL: AWSURL
+  age: String
+  gender: String
+  profession: String
+  phoneNumber: String
+  address: String
+  availability: String
+  hourlyRate: String
+  aadharNumber: String
+  skills: String
+  _version: Int
+}
+
+input UpdateDomesticHelperInput {
+  id: ID!
+  name: String
+  imageURL: AWSURL
+  age: String
+  gender: String
+  profession: String
+  phoneNumber: String
+  address: String
+  availability: String
+  hourlyRate: String
+  aadharNumber: String
+  skills: String
+  _version: Int
+}
+
+input DeleteDomesticHelperInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionDomesticHelperFilterInput {
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  imageURL: ModelSubscriptionStringInput
+  age: ModelSubscriptionStringInput
+  gender: ModelSubscriptionStringInput
+  profession: ModelSubscriptionStringInput
+  phoneNumber: ModelSubscriptionStringInput
+  address: ModelSubscriptionStringInput
+  availability: ModelSubscriptionStringInput
+  hourlyRate: ModelSubscriptionStringInput
+  aadharNumber: ModelSubscriptionStringInput
+  skills: ModelSubscriptionStringInput
+  and: [ModelSubscriptionDomesticHelperFilterInput]
+  or: [ModelSubscriptionDomesticHelperFilterInput]
+}
+
+type ModelVisitorConnection @aws_api_key @aws_iam {
+  items: [Visitor]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelVisitorFilterInput {
+  id: ModelIDInput
+  visitorName: ModelStringInput
+  visitorType: ModelStringInput
+  expectedDate: ModelStringInput
+  expectedTime: ModelStringInput
+  allowedBy: ModelStringInput
+  memberPhoneNumber: ModelStringInput
+  approvalStatus: ModelStringInput
+  verifyStatus: ModelStringInput
+  code: ModelStringInput
+  and: [ModelVisitorFilterInput]
+  or: [ModelVisitorFilterInput]
+  not: ModelVisitorFilterInput
+}
+
+input ModelVisitorConditionInput {
+  visitorName: ModelStringInput
+  visitorType: ModelStringInput
+  expectedDate: ModelStringInput
+  expectedTime: ModelStringInput
+  allowedBy: ModelStringInput
+  memberPhoneNumber: ModelStringInput
+  approvalStatus: ModelStringInput
+  verifyStatus: ModelStringInput
+  code: ModelStringInput
+  and: [ModelVisitorConditionInput]
+  or: [ModelVisitorConditionInput]
+  not: ModelVisitorConditionInput
+}
+
+input CreateVisitorInput {
+  id: ID
+  visitorName: String
+  visitorType: String
+  expectedDate: AWSDate
+  expectedTime: AWSTime
+  allowedBy: String
+  memberPhoneNumber: String
+  approvalStatus: String
+  verifyStatus: String
+  code: String
+  _version: Int
+}
+
+input UpdateVisitorInput {
+  id: ID!
+  visitorName: String
+  visitorType: String
+  expectedDate: AWSDate
+  expectedTime: AWSTime
+  allowedBy: String
+  memberPhoneNumber: String
+  approvalStatus: String
+  verifyStatus: String
+  code: String
+  _version: Int
+}
+
+input DeleteVisitorInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionVisitorFilterInput {
+  id: ModelSubscriptionIDInput
+  visitorName: ModelSubscriptionStringInput
+  visitorType: ModelSubscriptionStringInput
+  expectedDate: ModelSubscriptionStringInput
+  expectedTime: ModelSubscriptionStringInput
+  allowedBy: ModelSubscriptionStringInput
+  memberPhoneNumber: ModelSubscriptionStringInput
+  approvalStatus: ModelSubscriptionStringInput
+  verifyStatus: ModelSubscriptionStringInput
+  code: ModelSubscriptionStringInput
+  and: [ModelSubscriptionVisitorFilterInput]
+  or: [ModelSubscriptionVisitorFilterInput]
+}
+
+type ModelSocietyMemberConnection @aws_api_key @aws_iam {
+  items: [SocietyMember]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelSocietyMemberFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  emailId: ModelStringInput
+  imageURL: ModelStringInput
+  age: ModelStringInput
+  role: ModelStringInput
+  gender: ModelStringInput
+  phoneNumber: ModelStringInput
+  address: ModelStringInput
+  block: ModelStringInput
+  familyMember: ModelStringInput
+  and: [ModelSocietyMemberFilterInput]
+  or: [ModelSocietyMemberFilterInput]
+  not: ModelSocietyMemberFilterInput
+}
+
+input ModelSocietyMemberConditionInput {
+  name: ModelStringInput
+  emailId: ModelStringInput
+  imageURL: ModelStringInput
+  age: ModelStringInput
+  role: ModelStringInput
+  gender: ModelStringInput
+  phoneNumber: ModelStringInput
+  address: ModelStringInput
+  block: ModelStringInput
+  familyMember: ModelStringInput
+  and: [ModelSocietyMemberConditionInput]
+  or: [ModelSocietyMemberConditionInput]
+  not: ModelSocietyMemberConditionInput
+}
+
+input CreateSocietyMemberInput {
+  id: ID
+  name: String
+  emailId: AWSEmail
+  imageURL: AWSURL
+  age: String
+  role: String
+  gender: String
+  phoneNumber: String
+  address: String
+  block: String
+  familyMember: String
+  _version: Int
+}
+
+input UpdateSocietyMemberInput {
+  id: ID!
+  name: String
+  emailId: AWSEmail
+  imageURL: AWSURL
+  age: String
+  role: String
+  gender: String
+  phoneNumber: String
+  address: String
+  block: String
+  familyMember: String
+  _version: Int
+}
+
+input DeleteSocietyMemberInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionSocietyMemberFilterInput {
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  emailId: ModelSubscriptionStringInput
+  imageURL: ModelSubscriptionStringInput
+  age: ModelSubscriptionStringInput
+  role: ModelSubscriptionStringInput
+  gender: ModelSubscriptionStringInput
+  phoneNumber: ModelSubscriptionStringInput
+  address: ModelSubscriptionStringInput
+  block: ModelSubscriptionStringInput
+  familyMember: ModelSubscriptionStringInput
+  and: [ModelSubscriptionSocietyMemberFilterInput]
+  or: [ModelSubscriptionSocietyMemberFilterInput]
+}
+

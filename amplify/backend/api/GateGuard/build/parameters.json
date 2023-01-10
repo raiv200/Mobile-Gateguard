@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "GateGuard",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-gateguard-dev-164059-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/ff519f323457d784c179cd8044b442f78337f8d7"
+}
