@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
-import { MailOpenIcon } from "@heroicons/react/24/outline";
+import { EnvelopeOpenIcon } from "@heroicons/react/24/outline";
 
 const ConfirmSignUp = ({ authCode, handleAuthCode, handleConfirmSignUp }) => {
     return (
@@ -18,7 +18,7 @@ const ConfirmSignUp = ({ authCode, handleAuthCode, handleConfirmSignUp }) => {
             <div className=" flex flex-col w-[300px] h-[440px]  rounded-2xl mx-auto py-8 px-3 mt-6 space-y-3 ring-2 ring-indigo-200 dark:ring-indigo-500 shadow-2xl">
                 
                 <div className="flex flex-col items-center space-y-4 flex-1 px-4 ">
-                    <MailOpenIcon className="w-20 h-20 text-indigo-500 dark:text-indigo-500" />
+                    <EnvelopeOpenIcon className="w-20 h-20 text-indigo-500 dark:text-indigo-500" />
                     <div className="flex items-center justify-center text-3xl font-inter font-bold text-gray-800 dark:text-gray-100">
                         We Emailed You
                     </div>

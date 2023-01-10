@@ -1,5 +1,5 @@
 import React  from "react";
-import { MailIcon, KeyIcon ,AtSymbolIcon} from "@heroicons/react/24/solid";
+import { EnvelopeIcon, KeyIcon ,AtSymbolIcon} from "@heroicons/react/24/solid";
 import Logo from "./Logo";
 import Link from "next/link";
 
@@ -77,7 +77,7 @@ const SignUp = ({
               </label>
               <div className="relative mb-6">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                  <MailIcon className="w-5 h-5 text-indigo-500 dark:text-indigo-400" />
+                  <EnvelopeIcon className="w-5 h-5 text-indigo-500 dark:text-indigo-400" />
                 </div>
                 <input
                   type="email"
