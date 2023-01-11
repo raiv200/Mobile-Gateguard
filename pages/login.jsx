@@ -27,7 +27,7 @@ const login = () => {
             const user = await Auth.signIn(username, password);
             console.log("User Data After Login", user);
 
-            router.push("/mobile");
+            router.push("/app");
         } catch (error) {
             console.log("error signing in", error);
 

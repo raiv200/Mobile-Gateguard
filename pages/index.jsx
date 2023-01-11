@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import Layout from './Layout'
 import MobileLayout from '../components/MobileLayout'
 import Link from 'next/link'
 import Logo from '../components/Logo'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex  flex-col items-center justify-center ">
       <Head>
         <title>Mobile GateGuard</title>
         <link rel="icon" href="/gateguard-logo.svg" />
@@ -14,7 +13,7 @@ export default function Home() {
 
 
       <MobileLayout>
-        <div className="flex flex-col  items-center px-3  border-2 border-red-400 ">
+        <div className="flex flex-col items-center px-3  ">
           <Logo size="M" />
           <div className="relative flex flex-col items-center space-y-10">
             <img className=' flex items-center object-cover -mt-2' src="./banner-mobile-gateguard.png" />

@@ -18,7 +18,7 @@ const Login = ({
   handlePassword,
 }) => {
   return (
-    <div className="relative flex flex-col min-h-full bg-gray-50 dark:bg-gray-900 z-10 overflow-hidden">
+    <div className="relative flex flex-col mt-6 bg-gray-50 dark:bg-gray-900 z-10 overflow-hidden">
        
       {/* SignUp Nav Section   */}
       {/* <div className="flex justify-between mx-auto max-w-7xl w-full h-16 bg-transparent mt-4">
@@ -43,7 +43,7 @@ const Login = ({
       </div> */}
 
       
-      <div className="pt-6 flex flex-col z-20 mx-auto mt-2  w-[320px]">
+      <div className="pt-6 flex flex-col z-20 mx-auto mt-2 pb-2 w-[290px]">
         <div className="flex justify-center ">
           <Logo size="M" />
         </div>
