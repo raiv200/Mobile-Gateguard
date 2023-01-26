@@ -90,13 +90,13 @@ const CreateVisitor = () => {
             <Layout page="Create Visitor">
 
 
-                <div className="relative flex flex-col mt-4 bg-gray-50  dark:bg-gray-900 z-10 overflow-scroll h-[396px] ">
+                <div className="relative flex flex-col mt-4 bg-gray-50  dark:bg-gray-900 z-10 overflow-y-scroll h-[396px] ">
 
                     <div className="pt-4 flex flex-col  rounded-2xl z-20 mx-auto mt-2 pb-2 w-[290px] ">
 
                         <div className="flex flex-col space-y-3 flex-1 px-5 py-4 pt-6 ">
 
-                            <div className="flex flex-col overflow-scroll">
+                            <div className="flex flex-col ">
                                 <div className="flex flex-col">
                                     <label
                                         htmlFor="visitorName"
